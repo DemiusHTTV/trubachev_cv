@@ -38,3 +38,7 @@ plt.subplot(122)
 plt.imshow(f,cmap="gray")
 plt.clim(0,255)
 plt.imshow()
+path =Path("anna-images")
+for i file in path.glob("*.jpg"):
+    image = imread(file,as_gray=True)
+    print(fole.stem, round(median_brightness(image),3),round(mean_spatial_frenquency(images),3))
