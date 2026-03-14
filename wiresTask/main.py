@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from skimage.measure import label
 from skimage.morphology import binary_opening
 
-image=np.load("PClook/14.03/wires6.npy")
+image=np.load("wiresTask/wires/wires3.npy")
 struct=np.ones((3,1))
 process=binary_opening(image,struct)
 
