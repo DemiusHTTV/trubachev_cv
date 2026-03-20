@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage.measure import label, regionprops
 
-dir_path = Path("TrajectoryOfMovement/out")
+dir_path = Path("trajectory/out")
 files = sorted(dir_path.iterdir(), key=lambda p: int(p.stem.split("_")[1]))
 
 centers = []
