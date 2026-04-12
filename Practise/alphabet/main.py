@@ -6,18 +6,13 @@ from pathlib import Path
 
 save_path = Path("lektciya/alphabet/alphabet.png").parent
 
-# If you want to see why it decided 8 vs B, enable this.
 DEBUG_8B = False
 
-# Will be calibrated from template image ("alphabet-small.png") below.
 MIRROR_8B_THRESHOLD = None
 
 
 def mirror_diff(image: np.ndarray) -> float:
-    """
-    Split symbol into left/right halves, mirror right half and compare.
-    Returns mismatch ratio in [0..], where 0 means perfect vertical symmetry.
-    """
+
     image = image.astype(bool)
     on = int(image.sum())
     if on == 0:
@@ -53,8 +48,7 @@ def extractor(region):
     return np.array([region.area/region.image.size,cy,cx,perimeter,holes,vlines,hlines,eccentricity,aspect])
 
 def classificator(region, templates):
-    # "8" and "B" both have 2 holes, so we distinguish them by vertical mirror similarity:
-    # 8 ~= symmetric, B ~= not symmetric.
+
     if count_holes(region) == 2:
         diff = mirror_diff(region.image)
         thr = MIRROR_8B_THRESHOLD if MIRROR_8B_THRESHOLD is not None else 0.25
